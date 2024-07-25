@@ -1,0 +1,52 @@
+{% extends 'default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+Advert
+{% endblock title %}
+{% block content %}
+
+        <h2>Тема: {{ advert.subject }}</h2>
+        <p>Объявление: {{ advert.description }}</p>
+        <p>
+
+            {% if advert.file %}
+            <p>Изображения: <img src="{{ advert.file.url }}" style="width: 200px;" alt=""></p>
+        {% endif %}
+
+
+<!--            1{% for photo in advert.images.photos.all %}-->
+<!--            1{% if photo.image %}-->
+<!--            1<p>Изображения: <img src="{{ photo.image.url }}" style="width: 200px;" alt=""></p>-->
+<!--       1 {% endif %}-->
+
+<!--            % for photo in advert.images.photos.all %}-->
+
+<!--                {% if photo.image %}-->
+<!--                    <img src="{{ photo.image.url }}" style="width: 200px;">-->
+<!--                {% endif %}-->
+<!--            {% endfor %}-->
+
+
+        </p>
+        <p>Срок: {{ advert.date }}</p>
+        <p>Рубрика:{{ advert.filters }}</p>
+        <p>Пользователь: {{ advert.user }}</p>
+        <p>Цена: {{ advert.price|currency }}</p>
+        <p>Дата создания: {{ advert.created }}</p>
+        <hr>
+
+
+<br>
+    <br>
+
+<a href= "{% url 'advert_update' advert.id %}"><button>Редактировать</button></a>
+<a href= "{% url 'advert_delete' advert.id %}"><button>Удалить</button></a>
+
+
+
+<br>
+    <br>
+<br>
+
+{% endblock content %}
